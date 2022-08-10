@@ -1,16 +1,15 @@
 <?php
-    class MyDB extends SQLite3 {
-        function __construct() {
-            $this->open('database.db');
-        }
-    }
-    $db = new MyDB();
-    if(!$db) {
-        echo $db->lastErrorMsg();
-    } else {
-        echo "Opened!";
-    }
+    // PDO para SQLITE3
+    $pdo = new PDO('sqlite:database.db');
 
+    //Write SQL
+    $statement = $pdo->query("SELECT * FROM person");
+
+    //Run SQL
+    $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    //Show
+    var_dump($rows);
 ?>
 
 <!DOCTYPE html>
